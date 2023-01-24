@@ -1,9 +1,9 @@
 Rails.application.routes.draw do
   
-  resources :reviews
-  resources :cart_items
+  resources :reviews, only: [:create, :show]
+  resources :cart_items, only: [:create, :show]
   resources :products
-  resources :cart_details
+  resources :cart_details, only: [:create, :show]
   resources :users
   resources :customer_types
   resources :product_categories
