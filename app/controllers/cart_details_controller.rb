@@ -1,13 +1,14 @@
 class CartDetailsController < ApplicationController
 
-    before_action :find_cart_details, only: [:show]
+    before_action :find_cart_details, only: [:show] 
+    before_action :authorize 
 
     def show
         render json: @cart_details
     end
 
     def create
-        cart_details = create!(cart_details_params)
+        cart_details = create!(user_id: session[:user_id])
         render json: cart_details, status: :created
     end
 
@@ -17,7 +18,7 @@ class CartDetailsController < ApplicationController
         @cart_details = CartDetail.find(params[:id])
     end
 
-    def cart_details_params
-        params.permit(:cart_details)
+    def authorize
+        return render json: { error: "Not authorized" }, status: :unauthorized unless session.include? :user_id
     end
 end
