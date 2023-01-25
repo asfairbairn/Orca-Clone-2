@@ -17,7 +17,6 @@ export default function Navbar() {
     let quantity = 0;
     let id = 1;
     
-    debugger
     cart.forEach((cartItem) => {
         quantity += cartItem.quantity
     })

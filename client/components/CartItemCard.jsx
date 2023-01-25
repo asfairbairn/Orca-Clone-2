@@ -50,7 +50,7 @@ export default function CartItemCard({cartItem, handleDeleteData, updateCartItem
         })
         .then((res) => {
             if (res.ok)
-            handleDeleteData(id)
+            handleDeleteData(cartItem.id)
         })
     }
 
