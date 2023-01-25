@@ -10,7 +10,7 @@ export default function CartItemCard({cartItem, handleDeleteData, updateCartItem
     
     const handleRemove = (e) =>{
         e.preventDefault()
-        fetch(`http://localhost:9292/cart_items/${cartItem.id}`,{
+        fetch(`/api/cart_items/${cartItem.id}`,{
             method: 'PATCH',
             headers:  {
               "Content-Type": "application/json",
@@ -28,7 +28,7 @@ export default function CartItemCard({cartItem, handleDeleteData, updateCartItem
 
     const handleAdd = (e) =>{
         e.preventDefault()
-        fetch(`http://localhost:9292/cart_items/${cartItem.id}`,{
+        fetch(`/api/cart_items/${cartItem.id}`,{
             method: 'PATCH',
             headers:  {
               "Content-Type": "application/json",
@@ -45,12 +45,12 @@ export default function CartItemCard({cartItem, handleDeleteData, updateCartItem
     }
 
     const handleDelete = (e) =>{
-        fetch(`http://localhost:9292/cart_items/${cartItem.id}`,{
+        fetch(`/api/cart_items/${cartItem.id}`,{
         method: 'DELETE'
         })
-        .then(res => res.json())
-        .then(data => {
-            handleDeleteData(data.id)
+        .then((res) => {
+            if (res.ok)
+            handleDeleteData(id)
         })
     }
 

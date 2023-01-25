@@ -1,10 +1,10 @@
 class CartDetailsController < ApplicationController
 
     before_action :find_cart_details, only: [:show] 
-    before_action :authorize 
+    # before_action :authorize 
 
     def show
-        render json: @cart_details
+        render json: @cart_details.cart_items
     end
 
     def create
