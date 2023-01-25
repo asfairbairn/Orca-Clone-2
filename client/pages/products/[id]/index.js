@@ -15,13 +15,13 @@ export default function ProductDetails() {
     const id = router.query.id
 
     useEffect(() => {
-        fetch(`http://localhost:9292/products/${id}`)
+        fetch(`/api/products/${id}`)
             .then(res => res.json())
             .then(product => setProduct(product))
     }, [id]);
 
     const handleClick = () => {
-        fetch(`http://localhost:9292/cart_details/${1}/cart_items`, {
+        fetch(`/api/cart_details/${1}/cart_items`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -34,7 +34,10 @@ export default function ProductDetails() {
             })
         })
             .then(res => res.json())
-            .then(data => setCart(data))
+            .then(data => {
+                setCart(items => [...items, data])
+                
+            })
     }
 
     const { name, image_address_front, image_address_back, image_address_insideout_front, image_address_insideout_back, description, price } = product

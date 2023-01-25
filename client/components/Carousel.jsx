@@ -6,7 +6,7 @@ export default function Carousel() {
     const [products, setProducts] = useState([]);
 
     useEffect(() => {
-        fetch("http://localhost:9292/product_category")
+        fetch("/api/product_categories")
             .then((res) => res.json())
             .then((data) => {
                 setProducts(data)

@@ -16,13 +16,14 @@ export default function Navbar() {
     const router = useRouter();
     let quantity = 0;
     let id = 1;
-
+    
+    debugger
     cart.forEach((cartItem) => {
         quantity += cartItem.quantity
     })
 
     useEffect(() => {
-        fetch(`http://localhost:9292/cart_detail/${id}`)
+        fetch(`/api/cart_details/${id}`)
         .then(res => res.json())
         .then(cart => {
                 setCart(cart);

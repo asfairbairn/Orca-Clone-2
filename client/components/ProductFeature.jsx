@@ -5,7 +5,7 @@ export default function ProductFeature({ heading, category1, category2, category
     const [products, setProducts] = useState([]);
 
     useEffect(() => {
-        fetch("http://localhost:9292/products")
+        fetch("/api/products")
             .then((res) => res.json())
             .then((data) => setProducts(data))
     }, []);

@@ -11,6 +11,7 @@
     "heroku-postbuild": "npm run clean && npm run build && npm run dev deploy"
   },
   "dependencies": {
-    "http-proxy-middleware": "^2.0.6"
+    "http-proxy-middleware": "^2.0.6",
+    "next": "^13.1.5"
   }
 }

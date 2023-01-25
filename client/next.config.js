@@ -18,6 +18,12 @@ module.exports = {
         port: '',
         pathname: '/uploads/products/large/**',
       },
+      {
+        protocol: 'https',
+        hostname: 'user-images.githubusercontent.com',
+        port: '',
+        pathname: '/**',
+      },
     ],
   },
   async rewrites() {
@@ -27,5 +33,5 @@ module.exports = {
         destination: 'http://localhost:3000/:path*'
       }
     ]
-  }
+  },
 }
