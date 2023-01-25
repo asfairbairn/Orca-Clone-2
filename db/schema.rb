@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_01_25_000206) do
+ActiveRecord::Schema.define(version: 2023_01_25_182744) do
 
   create_table "cart_details", force: :cascade do |t|
     t.integer "user_id", null: false
@@ -86,6 +86,8 @@ ActiveRecord::Schema.define(version: 2023_01_25_000206) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "zip"
+    t.string "username"
+    t.string "password_digest"
   end
 
   add_foreign_key "cart_details", "users"
