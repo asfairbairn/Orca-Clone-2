@@ -2,6 +2,8 @@ class ProductsController < ApplicationController
 
     before_action :find_product, only: [:show, :update, :destroy]
 
+    skip_before_action :authorize, only: [:index, :show]
+
     def index
         render json: Product.all
     end

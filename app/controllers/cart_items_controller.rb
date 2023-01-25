@@ -2,6 +2,8 @@ class CartItemsController < ApplicationController
 
     before_action :find_cart_item, only: [:show, :update, :destroy]
 
+    skip_before_action :authorize
+
     def show
         render json: @cart_item
     end
