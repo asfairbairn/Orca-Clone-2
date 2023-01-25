@@ -2,6 +2,8 @@ class CustomerTypesController < ApplicationController
 
     before_action :find_customer_type, only: [:show, :update, :destroy]
 
+    skip_before_action :authorize, only: [:index, :show]
+
     def index
         render json: CustomerType.all
     end

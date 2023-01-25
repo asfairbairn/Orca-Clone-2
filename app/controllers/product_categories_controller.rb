@@ -2,6 +2,8 @@ class ProductCategoriesController < ApplicationController
 
     before_action :find_product_categories, only: [:show, :update, :destroy]
 
+    skip_before_action :authorize, only: [:index, :show]
+
     def index
         render json: ProductCategory.all
     end

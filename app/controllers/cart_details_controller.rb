@@ -1,7 +1,8 @@
 class CartDetailsController < ApplicationController
 
-    before_action :find_cart_details, only: [:show] 
-    # before_action :authorize 
+    before_action :find_cart_details, only: [:show]
+
+    skip_before_action :authorize
 
     def show
         render json: @cart_details.cart_items
@@ -18,7 +19,4 @@ class CartDetailsController < ApplicationController
         @cart_details = CartDetail.find(params[:id])
     end
 
-    def authorize
-        return render json: { error: "Not authorized" }, status: :unauthorized unless session.include? :user_id
-    end
 end
