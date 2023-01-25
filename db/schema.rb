@@ -10,13 +10,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_01_24_191820) do
-
-  # These are extensions that must be enabled in order to support this database
-  enable_extension "plpgsql"
+ActiveRecord::Schema.define(version: 2023_01_25_000206) do
 
   create_table "cart_details", force: :cascade do |t|
-    t.bigint "user_id", null: false
+    t.integer "user_id", null: false
     t.float "total"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -24,13 +21,13 @@ ActiveRecord::Schema.define(version: 2023_01_24_191820) do
   end
 
   create_table "cart_items", force: :cascade do |t|
-    t.bigint "cart_details_id", null: false
-    t.bigint "product_id", null: false
+    t.integer "cart_detail_id", null: false
+    t.integer "product_id", null: false
     t.integer "quantity"
     t.string "size"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["cart_details_id"], name: "index_cart_items_on_cart_details_id"
+    t.index ["cart_detail_id"], name: "index_cart_items_on_cart_detail_id"
     t.index ["product_id"], name: "index_cart_items_on_product_id"
   end
 
@@ -47,20 +44,21 @@ ActiveRecord::Schema.define(version: 2023_01_24_191820) do
     t.boolean "active"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "category_image"
   end
 
   create_table "products", force: :cascade do |t|
     t.string "name"
-    t.bigint "product_category_id", null: false
+    t.integer "product_category_id", null: false
     t.string "image_address_front"
     t.string "image_address_back"
     t.string "image_address_insideout_front"
-    t.string "image_address_inside_out_back"
+    t.string "image_address_insideout_back"
     t.string "brief_description"
     t.string "description"
     t.integer "price"
-    t.integer "quantity"
-    t.bigint "customer_type_id", null: false
+    t.integer "stock"
+    t.integer "customer_type_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["customer_type_id"], name: "index_products_on_customer_type_id"
@@ -68,8 +66,8 @@ ActiveRecord::Schema.define(version: 2023_01_24_191820) do
   end
 
   create_table "reviews", force: :cascade do |t|
-    t.bigint "product_id", null: false
-    t.bigint "user_id", null: false
+    t.integer "product_id", null: false
+    t.integer "user_id", null: false
     t.integer "review"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -87,10 +85,11 @@ ActiveRecord::Schema.define(version: 2023_01_24_191820) do
     t.integer "phone_number"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "zip"
   end
 
   add_foreign_key "cart_details", "users"
-  add_foreign_key "cart_items", "cart_details", column: "cart_details_id"
+  add_foreign_key "cart_items", "cart_details"
   add_foreign_key "cart_items", "products"
   add_foreign_key "products", "customer_types"
   add_foreign_key "products", "product_categories"
