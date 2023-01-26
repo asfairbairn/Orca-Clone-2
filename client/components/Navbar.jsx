@@ -45,6 +45,9 @@ export default function Navbar() {
         } else if (router.pathname === '/cart') {
             setColor('white');
             setTextColor('black');
+        } else if (router.pathname === '/login') {
+            setColor('white');
+            setTextColor('black');
         } else {
             window.addEventListener('scroll', changecolor);
         }
