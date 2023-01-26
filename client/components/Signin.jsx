@@ -36,22 +36,20 @@ export default function signin({setClick}) {
 
 
     return (
-        <div>
-            <h1 className="font-bold text-4xl mb-10 mt-5">
+        <div className="h-screen">
+            <h1 className="grid grid-cols-2 font-bold text-4xl pb-2 pt-80">
                 Sign In
             </h1>
             <div className='py-5 mr-10'>
-                <form onSubmit={handleSubmit} className="w-96">
-                    <input onChange={handleChange} className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="username" type="text" placeholder="Email Address" name="email" value={form.email}/>
-                    <input onChange={handleChange} className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="username" type="text" placeholder="Password" name="password" value={form.password}/>
-                    <div className='items-center text-center mt-2'>
-                        <button className='bg-black text-white rounded-full text-sm m-2 py-3 px-64 w-80'>Enter</button>
+                <form onSubmit={handleSubmit} className="w-96 justify-center pb-2">
+                    <input onChange={handleChange} className="inline-flex w-[570px] h-14 bg-white mb-4 px-4 py-2 text-base items-center text-left font-normal shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-gray-100" id="username" type="text" placeholder="Email Address" name="email" value={form.email}/>
+                    <input onChange={handleChange} className="inline-flex w-[570px] h-14 bg-white mb-4 px-4 py-2 text-base items-center text-left font-normal shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-gray-100" id="username" type="text" placeholder="Password" name="password" value={form.password}/>
+                    <div className="items-center mt-2 w-[570px]">
+                        <button className='w-[570px] bg-black rounded-full text-white text-base font-medium m-2 py-3 px-10 mb-5 mt-5'>Enter</button>
                         <h1>{errors}</h1>
+                        <p className="text-center">Don't have an account? <button onClick={() => setClick(true)}><em className="font-medium underline not-italic">Create one</em></button></p>
                     </div>
                 </form>
-                <div className='mt-16'>
-                    <p>Don't have an account? <button onClick={() => setClick(true)}>Create one</button></p>
-                </div>
             </div>
         </div>
     )
