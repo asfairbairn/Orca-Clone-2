@@ -14,7 +14,7 @@ export default function account({handleChange, setClick, form}) {
             </h1>
             <div className='py-5 mr-10'>
                 <form onSubmit={handleSubmit} className="w-96">
-                    <input onChange={handleChange} className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="username" type="text" placeholder="Email" name="email" value={form.email}/>
+                    <input onChange={handleChange} className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="username" type="text" placeholder="Email Address" name="email" value={form.email}/>
                     <div className='items-center text-center mt-2'>
                         <button className='bg-black text-white rounded-full text-sm m-2 py-3 px-64 w-80'>Next</button>
                     </div>
