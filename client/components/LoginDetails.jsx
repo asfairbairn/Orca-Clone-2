@@ -12,8 +12,7 @@ export default function LoginDetails () {
 
     const [form, setForm] = useState({
         email: '',
-        password: '',
-        repeatPassword: ''
+        password: ''
         })
 
     const handleChange = (e) => {
