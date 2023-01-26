@@ -11,6 +11,7 @@ export default function LoginDetails () {
     const [click, setClick] = useState(null)
 
     const [form, setForm] = useState({
+        username: '',
         email: '',
         password: ''
         })

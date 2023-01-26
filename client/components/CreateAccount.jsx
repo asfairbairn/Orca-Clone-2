@@ -7,6 +7,7 @@ export default function CreateAccount({form, handleChange, setClick}) {
 
     const handleSubmit = (e) => {
         e.preventDefault()
+        console.log(form)
         setErrors([])
         fetch('/api/signup', {
             method: 'POST',
@@ -30,9 +31,9 @@ export default function CreateAccount({form, handleChange, setClick}) {
             </h1>
             <div className='py-5 mr-10'>
                 <form onSubmit={handleSubmit} className="w-80">
-                    <input onChange={handleChange} className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="username" type="text" name="email" placeholder="Username" value={form.email}/>
+                    <input onChange={handleChange} className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="username" type="text" name="username" placeholder="Username" value={form.username}/>
+                    <input onChange={handleChange} className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="username" type="text" placeholder="Email" name="email" value={form.email}/>
                     <input onChange={handleChange} className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="username" type="text" placeholder="Password" name="password" value={form.password}/>
-                    <input onChange={handleChange} className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="username" type="text" placeholder="Repeat password" name="repeatPassword" value={form.repeatPassword}/>
                     <div className='items-center text-center mt-2'>
                         <ul>
                             <li>I have read and accept the Terms and Conditions and Privacy Policy associated with the management of my user account.</li>
