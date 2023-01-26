@@ -71,6 +71,7 @@ export default function Navbar() {
                 <li className="px-5"><Link href="/about">About Orca</Link></li>
                 <li className="px-5 -mr-3"><Link href="/cart">Cart</Link></li>
                 {quantity > 0 ? <li className="px-2 text-white items-center bg-black rounded-full"><Link href="/cart">{quantity}</Link></li> : null}
+                <li className="px-5 -mr-3"><Link href="/login">Login</Link></li>
             </ul>
             <div>
                 <Link href="/">
