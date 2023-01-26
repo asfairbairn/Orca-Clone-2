@@ -9,6 +9,9 @@ module.exports = {
       backgroundImage: {
         'hero': "url('../public/images/home-hero-triathlon_1920x1569.jpg')",
       },
+      backgroundImage: {
+        'auth': "url('../public/images/background.jpg')",
+      },
     },
   },
   plugins: [

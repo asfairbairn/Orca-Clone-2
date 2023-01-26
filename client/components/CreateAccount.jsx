@@ -25,7 +25,7 @@ export default function CreateAccount({form, handleChange, setClick}) {
     }
 
     return (
-        <div>
+        <div className="h-screen ">
             <h1 className="font-bold text-4xl mb-10 mt-5">
                 Create Account
             </h1>
