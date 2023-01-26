@@ -19,7 +19,7 @@ export default function CartDetails () {
     let total = 0
     let quantity = 0
 
-    console.log(quantity)
+    // console.log(quantity)
 
     const updateCartItem = (item) => {
         setCart(cart.map(i => i.id === item.id ? item : i));

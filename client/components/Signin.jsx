@@ -1,8 +1,10 @@
 import React, {useState} from "react"
+import { useRouter } from "next/router"
 import Link from 'next/link';
 
 
 export default function signin({setClick}) {
+    const router = useRouter()
     const [errors, setErrors] = useState([])
     const [form, setForm] = useState({
         email: '',
@@ -21,7 +23,7 @@ export default function signin({setClick}) {
             body: JSON.stringify(form),
         }).then(res => {
             if(res.ok) {
-                res.json().then((user) => onLogin(user))
+                res.json().then((user) => console.log(user)).then(router.push('/cart'))
             } else {
                 res.json().then((error) => setErrors(error.errors))
             }

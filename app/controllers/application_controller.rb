@@ -17,7 +17,7 @@ class ApplicationController < ActionController::API
   end
 
   def invalid_response(exception)
-    render json: { errors: exception.record.errors.full_messages }, status: :unprocessble_entity
+    render json: { errors: exception.record.errors.full_messages }, status: :unprocessable_entity
   end
 
 end
