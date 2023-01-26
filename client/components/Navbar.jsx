@@ -4,7 +4,9 @@ import CartContext from "../contexts/CartContext";
 import Link from "next/link";
 import Image from "next/image";
 import Logo from "../public/logos/orca--light.svg";
-import LogoDark from "../public/logos/orca--dark.svg"
+import LogoDark from "../public/logos/orca--dark.svg";
+import User from "../public/icons/user--light.svg";
+import UserDark from "../public/icons/user--dark.svg";
 import SearchIcon from "../public/icons/search--light.svg";
 import SearchDark from "../public/icons/search--dark.svg"
 
@@ -74,11 +76,15 @@ export default function Navbar() {
                 <li className="px-5"><Link href="/about">About Orca</Link></li>
                 <li className="px-5 -mr-3"><Link href="/cart">Cart</Link></li>
                 {quantity > 0 ? <li className="px-2 text-white items-center bg-black rounded-full"><Link href="/cart">{quantity}</Link></li> : null}
-                <li className="px-5 -mr-3"><Link href="/login">Login</Link></li>
             </ul>
             <div>
-                <Link href="/">
-                    {color == 'transparent' ? <Image src={SearchIcon} alt="Search Icon" width={20} height={20} /> : <Image src={SearchDark} alt="Search Icon" width={20} height={20} />}
+                <Link href="/login" className="px-12 ">
+                    {color == 'transparent' ? <Image src={User} alt="User Icon" width={20} height={20} /> : <Image src={UserDark} alt="User Icon" width={20} height={20} />}
+                </Link>
+            </div>
+            <div>
+                <Link href="/" className="px-10">
+                    {color == 'transparent' ? <Image src={SearchIcon} alt="Search Icon" width={20} height={20} /> : <Image src={SearchDark} alt="Search Icon" width={30} height={30} />}
                 </Link>
             </div>
         </div>
