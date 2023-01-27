@@ -1,23 +1,24 @@
 class UsersController < ApplicationController
 
     before_action :find_user, only: [:update, :destroy]
+    before_action :guest, only: [:show]
     skip_before_action :authorize, only: [:show, :create]
 
     def index
         render json: User.all
     end
 
-    # def show
-    #     user = User.find_by(id: session[:user_id])
-    #     if user
-    #         render json: user
-    #     else
-    #         render json: { error: "Not authorized" }, status: :unauthorized
-    #     end
-    # end
-
     def show
+        authorize
         render json: @current_user
+    end
+
+    def guest
+        return if session[:user_id]
+        @guest = User.new(:email => "Guest")
+        @guest.save(validate: false)
+        session[:user_id] = @guest.id
+        cart_details = @guest.cart_details.create!
     end
 
     def create
@@ -42,6 +43,12 @@ class UsersController < ApplicationController
     def find_user
         @user = User.find(params[:id])
     end
+
+    # def guest_user
+    #     @guest = User.new(:email => "Guest" )
+    #     @guest.save(:validate => false)
+    #     CartDetails.create(user_id: guest.id)
+    # end
 
     def user_params
         params.permit(:first_name, :last_name, :email, :street_address, :city, :state, :phone_number, :username, :password, :password_confirmation)
