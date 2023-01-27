@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "http-proxy-middleware": "^2.0.6",
-    "next": "^13.1.5"
+    "next": "^13.1.5",
+    "tw-elements": "^1.0.0-alpha13"
   }
 }
