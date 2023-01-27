@@ -16,7 +16,7 @@ class CartDetailsController < ApplicationController
     private
 
     def find_cart_details
-        @cart_details = CartDetail.find(params[:id])
+        @cart_details = User.find(params[:id]).cart_details.last
     end
 
 end

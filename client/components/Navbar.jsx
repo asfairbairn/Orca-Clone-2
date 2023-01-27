@@ -10,29 +10,39 @@ import UserDark from "../public/icons/user--dark.svg";
 import SearchIcon from "../public/icons/search--light.svg";
 import SearchDark from "../public/icons/search--dark.svg"
 
-export default function Navbar({user}) {
+
+export default function Navbar({ user, setUser }) {
     const [color, setColor] = useState('transparent');
     const [textColor, setTextColor] = useState('white');
     const [cart, setCart] = useContext(CartContext);
     const router = useRouter()
+
     let quantity = 0;
-    // let id = 1;
+    
     cart.forEach((cartItem) => {
         quantity += cartItem.quantity
     })
 
+
+
+    const handleLogOut = (e) => {
+        fetch(`/api/logout`,{
+            method: 'DELETE'
+            })
+            .then(() => setUser(null));
+    }
+
     useEffect(() => {
-        if (user?.id) {
+        if (user?.id && user.email != "Guest") {
         fetch(`/api/cart_details/${user.id}`)
         .then(res => {
             if (res.ok){
                 return res.json()
             } else {
-
+            
             }
         })
         .then(cart => {
-                console.log(cart)
                 setCart(cart);
             });
         }
@@ -65,8 +75,6 @@ export default function Navbar({user}) {
         }
     }, [router.pathname])
 
-    
-
     return (
         <div style= {{ backgroundColor: `${color}` }}className="fixed left-0 top-0 w-full z-10 ease-in duration-300 flex items-center justify-center hover:bg-white h-20 ">
             <ul style={{ color: `${textColor}` }} className="flex px-10 text-white">
@@ -85,7 +93,7 @@ export default function Navbar({user}) {
                 {quantity > 0 ? <li className="px-2 text-white items-center bg-black rounded-full"><Link href="/cart">{quantity}</Link></li> : null}
             </ul>
             <div>
-                <Link href="/login" className="px-12 ">
+                <Link href="/login" className="px-12 hover">
                     {color == 'transparent' ? <Image src={User} alt="User Icon" width={20} height={20} /> : <Image src={UserDark} alt="User Icon" width={20} height={20} />}
                 </Link>
             </div>
@@ -94,6 +102,7 @@ export default function Navbar({user}) {
                     {color == 'transparent' ? <Image src={SearchIcon} alt="Search Icon" width={20} height={20} /> : <Image src={SearchDark} alt="Search Icon" width={30} height={30} />}
                 </Link>
             </div>
+            {user?.email != "Guest" ? <div><Link href="/" onClick={handleLogOut} className="px-5">Logout</Link></div> : null}
         </div>
     );
 }
