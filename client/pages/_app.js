@@ -13,11 +13,11 @@ export default function App({ Component, pageProps }) {
         setUser(data)});
       }});
   }, []);
-
+  console.log(user)
   return (
     <CartProvider>
-      <Navbar />
-      <Component {...pageProps} user={user} />
+      <Navbar user={user} setUser={setUser} />
+      <Component {...pageProps} user={user} setUser={setUser} />
       <Footer />
     </CartProvider>
   )

@@ -4,7 +4,7 @@ import AuthImage from '../public/images/background.jpg'
 import Link from 'next/link';
 import CreateAccount from './CreateAccount'
 import Account from './Account'
-import Signin from './Signin';
+import SignIn from './SignIn';
 
 
 export default function LoginDetails () {
@@ -27,7 +27,7 @@ export default function LoginDetails () {
             </div>
             <div className="bg-stone-100">
                 <div className="ml-24">
-                    {click == null ? <Account setClick={setClick} handleChange={handleChange} form={form}/> : click==true? <CreateAccount form={form} handleChange={handleChange} setClick={setClick}/> : <Signin setClick={setClick}/>}
+                    {click == null ? <Account setClick={setClick} handleChange={handleChange} form={form}/> : click==true? <CreateAccount form={form} handleChange={handleChange} setClick={setClick}/> : <SignIn setClick={setClick}/>}
                 </div>
             </div>
         </div>

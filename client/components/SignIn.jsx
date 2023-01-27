@@ -3,7 +3,7 @@ import { useRouter } from "next/router"
 import Link from 'next/link';
 
 
-export default function SignIn({setClick}) {
+export default function SignIn({ setClick, setUser }) {
     const router = useRouter()
     const [errors, setErrors] = useState([])
     const [form, setForm] = useState({
@@ -23,7 +23,7 @@ export default function SignIn({setClick}) {
             body: JSON.stringify(form),
         }).then(res => {
             if(res.ok) {
-                res.json().then((user) => console.log(user)).then(router.push('/cart'))
+                res.json().then((user) => setUser(user)).then(router.push('/'))
             } else {
                 res.json().then((error) => setErrors(error.errors))
             }
