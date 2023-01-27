@@ -9,7 +9,7 @@ class CartDetailsController < ApplicationController
     end
 
     def create
-        cart_details = create!(user_id: session[:user_id])
+        cart_details = CartDetail.create!(user_id: session[:user_id])
         render json: cart_details, status: :created
     end
 

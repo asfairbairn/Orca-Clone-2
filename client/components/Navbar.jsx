@@ -10,26 +10,33 @@ import UserDark from "../public/icons/user--dark.svg";
 import SearchIcon from "../public/icons/search--light.svg";
 import SearchDark from "../public/icons/search--dark.svg"
 
-export default function Navbar() {
+export default function Navbar({user}) {
     const [color, setColor] = useState('transparent');
     const [textColor, setTextColor] = useState('white');
     const [cart, setCart] = useContext(CartContext);
-    
-    const router = useRouter();
+    const router = useRouter()
     let quantity = 0;
-    let id = 1;
-    
+    // let id = 1;
     cart.forEach((cartItem) => {
         quantity += cartItem.quantity
     })
 
     useEffect(() => {
-        fetch(`/api/cart_details/${id}`)
-        .then(res => res.json())
+        if (user?.id) {
+        fetch(`/api/cart_details/${user.id}`)
+        .then(res => {
+            if (res.ok){
+                return res.json()
+            } else {
+
+            }
+        })
         .then(cart => {
+                console.log(cart)
                 setCart(cart);
             });
-    }, [id]);
+        }
+    }, [user]);
 
     useEffect(() => {
         const changecolor = () => {

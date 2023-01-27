@@ -9,13 +9,9 @@ export default function App({ Component, pageProps }) {
 
   useEffect(() => {
     fetch("/api/me").then((r) => {
-      if (r.ok) {
-        r.json().then((user) => {
-          setUser(user)
-          console.log(user)
-        });
-      }
-    });
+      if (r.ok) {r.json().then((data) => {
+        setUser(data)});
+      }});
   }, []);
 
   return (

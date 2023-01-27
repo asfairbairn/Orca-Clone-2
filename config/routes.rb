@@ -3,9 +3,8 @@ Rails.application.routes.draw do
   resources :reviews, only: [:create, :show]
   resources :cart_items, only: [:create, :show, :update, :destroy]
   resources :products
-  resources :cart_details, only: [:create, :show] do
+  resources :cart_details, only: [:create, :show]
   resources :cart_items, only: [:create]
-  end
   resources :users
   resources :customer_types
   resources :product_categories
