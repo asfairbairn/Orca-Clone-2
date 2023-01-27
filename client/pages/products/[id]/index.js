@@ -5,12 +5,13 @@ import { useRouter } from 'next/router';
 import Shipping from '../../../public/icons/shipping.svg'
 import Benefits from '../../../public/icons/benefits.svg'
 import CartContext from '../../../contexts/CartContext';
+import UserContext from '../../../contexts/UserContext';
 
 export default function ProductDetails() {
     const [product, setProduct] = useState({});
     const [size, setSize] = useState("");
     const [_cart, setCart] = useContext(CartContext);
-
+    const [user, _setUser] = useContext(UserContext)
     const router = useRouter()
     const id = router.query.id
 
@@ -21,7 +22,7 @@ export default function ProductDetails() {
     }, [id]);
 
     const handleClick = () => {
-        fetch(`/api/cart_details/${1}/cart_items`, {
+        fetch(`/api/cart_details/${user.cart_details_id}/cart_items`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -36,7 +37,7 @@ export default function ProductDetails() {
             .then(res => res.json())
             .then(data => {
                 setCart(items => [...items, data])
-                
+
             })
     }
 

@@ -1,9 +1,11 @@
-import React, {useState} from "react"
+import React, {useContext, useState} from "react"
 import { useRouter } from "next/router"
 import Link from 'next/link';
+import UserContext from "../contexts/UserContext";
 
 
-export default function SignIn({ setClick, setUser }) {
+export default function SignIn({ setClick }) {
+    const [user, setUser] = useContext(UserContext)
     const router = useRouter()
     const [errors, setErrors] = useState([])
     const [form, setForm] = useState({
