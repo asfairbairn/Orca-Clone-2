@@ -3,7 +3,7 @@ import { useRouter } from "next/router"
 import Link from 'next/link';
 
 
-export default function signin({setClick}) {
+export default function SignIn({setClick}) {
     const router = useRouter()
     const [errors, setErrors] = useState([])
     const [form, setForm] = useState({
