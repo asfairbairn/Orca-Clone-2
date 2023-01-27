@@ -1,24 +1,18 @@
 import React, { useEffect, useState } from 'react'
 import { CartProvider } from '../contexts/CartContext'
+import UserContext, { UserProvider } from '../contexts/UserContext'
 import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
 import '../styles/globals.css'
 
 export default function App({ Component, pageProps }) {
-  const [user, setUser] = useState(null);
-
-  useEffect(() => {
-    fetch("/api/me").then((r) => {
-      if (r.ok) {r.json().then((data) => {
-        setUser(data)});
-      }});
-  }, []);
-  console.log(user)
   return (
-    <CartProvider>
-      <Navbar user={user} setUser={setUser} />
-      <Component {...pageProps} user={user} setUser={setUser} />
-      <Footer />
-    </CartProvider>
+    <UserProvider>
+      <CartProvider>
+        <Navbar />
+        <Component {...pageProps} />
+        <Footer />
+      </CartProvider>
+    </UserProvider>
   )
 }

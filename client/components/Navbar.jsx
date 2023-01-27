@@ -8,13 +8,15 @@ import LogoDark from "../public/logos/orca--dark.svg";
 import User from "../public/icons/user--light.svg";
 import UserDark from "../public/icons/user--dark.svg";
 import SearchIcon from "../public/icons/search--light.svg";
-import SearchDark from "../public/icons/search--dark.svg"
+import SearchDark from "../public/icons/search--dark.svg";
+import UserContext from "../contexts/UserContext"
 
 
-export default function Navbar({ user, setUser }) {
+export default function Navbar() {
     const [color, setColor] = useState('transparent');
     const [textColor, setTextColor] = useState('white');
     const [cart, setCart] = useContext(CartContext);
+    const [user, setUser] = useContext(UserContext);
     const router = useRouter()
 
     let quantity = 0;
@@ -23,17 +25,27 @@ export default function Navbar({ user, setUser }) {
         quantity += cartItem.quantity
     })
 
-
-
     const handleLogOut = (e) => {
         fetch(`/api/logout`,{
             method: 'DELETE'
             })
-            .then(() => setUser(null));
+            .then(() => {
+                fetch("/api/me").then((r) => {
+                    if (r.ok) {r.json().then((data) => {
+                      setUser(data)});
+                    }});
+            });
     }
 
     useEffect(() => {
-        if (user?.id && user.email != "Guest") {
+        fetch("/api/me").then((r) => {
+          if (r.ok) {r.json().then((data) => {
+            setUser(data)});
+          }});
+      }, []);
+
+    useEffect(() => {
+        if (user?.id) {
         fetch(`/api/cart_details/${user.id}`)
         .then(res => {
             if (res.ok){
